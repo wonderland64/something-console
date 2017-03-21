@@ -3,9 +3,6 @@
 
 #include "Actor.hh"
 
-class Level;
-class Tile;
-
 class Player : public Actor {
 public:
     Player();
