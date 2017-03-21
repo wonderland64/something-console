@@ -15,6 +15,9 @@ public:
     char graphic() const;
     void moveLevel(Level*, Tile*);
 
+    //bool validAction();
+    bool progressAction();
+
 protected:
     //void setTile(Tile* tile);
     //void setCurrentLevel(Level* currentLevel);
@@ -26,8 +29,6 @@ private:
     char graphic_;
 
     std::unique_ptr<IAction> action_;
-
-
 };
 
 #endif

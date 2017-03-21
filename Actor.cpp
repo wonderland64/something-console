@@ -1,13 +1,16 @@
 #include "Actor.hh"
 #include "Level.hh"
 
-Actor::Actor(Level* level, Tile* tile, char graphic) : currentLevel_(level), tile_(tile), graphic_(graphic) {}
+Actor::Actor(Level* level, Tile* tile, char graphic)
+    : currentLevel_(level), tile_(tile), graphic_(graphic), action_(nullptr) {}
 
 void Actor::move(int y, int x) {
     if (y == 0 && x == 0) {
         return;
     }
-    tile_ = currentLevel_->moveActor(*this, tile_, y, x);
+    //tile_ = currentLevel_->moveActor(*this, tile_, y, x);
+    auto callback = [this, y, x]() { return currentLevel_->moveActor(*this, tile_, y, x); };
+    action_ = std::make_unique<Action<int, decltype(callback), Tile*>>(0, callback, &tile_);
 }
 char Actor::graphic() const {
     return graphic_;
@@ -17,9 +20,9 @@ void Actor::moveLevel(Level* level, Tile* tile) {
     tile_ = tile;
 }
 
-// void Actor::setTile(Tile* tile) {
-//     this->tile_ = tile;
-// }
-// void Actor::setCurrentLevel(Level* currentLevel) {
-//     this->currentLevel_ = currentLevel;
-// }
+bool Actor::progressAction() {
+    if (action_ == nullptr) {
+        return false;
+    }
+    return action_->tickDown();
+}
