@@ -21,6 +21,8 @@ private:
     InputController inputController_;
 
     Player player_;
+
+    void advanceTurn();
 };
 
 #endif
