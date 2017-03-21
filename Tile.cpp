@@ -16,7 +16,7 @@ char Tile::getGraphic() const {
     // else { myMover = 0; }
     // if (equipment is here) { return equipment.graphic; }
     // return type_;
-    if (occupant_ != 0) {
+    if (occupant_ != nullptr) {
         return '@';
     }
 
@@ -47,7 +47,7 @@ void Tile::removeOccupant() {
     if (occupant_ == nullptr) {
         throw std::domain_error("no occupant on tile");
     }
-    occupant_ = 0;
+    occupant_ = nullptr;
     redrawTile(y_, x_, getGraphic());
 }
 void Tile::addOccupant(const Actor& actor) {
@@ -55,7 +55,7 @@ void Tile::addOccupant(const Actor& actor) {
     redrawTile(y_, x_, getGraphic());
 }
 bool Tile::isPassable() {
-    if (occupant_ != 0) {
+    if (occupant_ != nullptr) {
         return false;
     }
     return type_ == TileType::FLOOR;
