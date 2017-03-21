@@ -1,2 +1,11 @@
 # ignore build
 build/
+
+# ignore gtags
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+
+# ignore makefile?
+#Makefile
