@@ -2,7 +2,6 @@
 #define GUARD_Action_hh
 
 #include <memory>
-#include <ncurses.h>
 
 class IAction {
 public:
@@ -32,7 +31,7 @@ public:
 
 private:
     T ticks_;
-    R* objectToModify_; 
+    R* objectToModify_;
     F callback_;
     bool invoked_;
 };
