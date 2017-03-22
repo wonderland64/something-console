@@ -46,6 +46,12 @@ void Level::spawnActor(Actor& actor) {
 }
 
 void Level::generateLevel(unsigned int roomAmount, unsigned int rowMax, unsigned int colMax) {
+    if (rowMax > height()) {
+        rowMax = height() - 1;
+    }
+    if (colMax > width()) {
+        colMax = width() - 1;
+    }
     for (unsigned int i = 0; i != roomAmount; ++i) {
         Room room;
         if (room.generateRoom(rooms_, rowMax, colMax, height(), width()) == false) {
@@ -98,13 +104,16 @@ void Level::fixCorners(unsigned int y, unsigned int x) {
 }
 
 void Level::setTileType(unsigned int y, unsigned int x, TileType type) {
+    if (y > height() || x > width()) {
+        throw std::domain_error("Level::setTileType: out of range");
+    }
     tiles_[y][x].setTileType(type);
 }
 
 void Level::printLevelArray() {
     using vector_size = std::vector<std::vector<char>>::size_type;
-    for (vector_size y = 0; y != tiles_.size(); ++y) {
-        for (vector_size x = 0; x != tiles_[0].size(); ++x) {
+    for (vector_size y = 0; y != height(); ++y) {
+        for (vector_size x = 0; x != width(); ++x) {
             auto c = tiles_[y][x].getGraphic();
             mvaddch(y, x, c);
          }
