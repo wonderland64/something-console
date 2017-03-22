@@ -1,6 +1,9 @@
 # ignore build
 build/
 
+# ignore weird .#... files
+.#*
+
 # ignore gtags
 GPATH
 GRTAGS
