@@ -20,7 +20,7 @@ public:
     unsigned int centerX() const noexcept;
     unsigned int centerY() const noexcept;
 
-    const bool generateRoom(const std::vector<Room>&, unsigned int, unsigned int, unsigned int, unsigned int);
+    bool generateRoom(const std::vector<Room>&, unsigned int, unsigned int, unsigned int, unsigned int);
 
     void addToLevel(setTileFunction);
 
@@ -32,11 +32,11 @@ private:
 
     static const unsigned int minRoomSize_ = 5;
 
-    const bool isRoomValid(const std::vector<Room>&) const;
+    bool isRoomValid(const std::vector<Room>&) const;
     // Helper functions to isRoomValid.
-    const bool isOverlapping(const Room&) const;
-    const bool isOverlappingX(const Room&) const;
-    const bool isOverlappingY(const Room&) const;
+    bool isOverlapping(const Room&) const;
+    bool isOverlappingX(const Room&) const;
+    bool isOverlappingY(const Room&) const;
 };
 
 #endif

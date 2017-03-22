@@ -17,7 +17,7 @@ unsigned int Room::centerY() const noexcept {
     return y0_ + (row_ / 2);
 }
 
-const bool Room::generateRoom(const std::vector<Room>& rooms, unsigned int rowMax, unsigned int colMax,
+bool Room::generateRoom(const std::vector<Room>& rooms, unsigned int rowMax, unsigned int colMax,
                               unsigned int height, unsigned int width) {
     unsigned int maxFails = 100;
     Random rand;
@@ -52,7 +52,7 @@ void Room::addToLevel(setTileFunction setTile) {
     }
 }
 
-const bool Room::isRoomValid(const std::vector<Room>& rooms) const {
+bool Room::isRoomValid(const std::vector<Room>& rooms) const {
     for (auto it = rooms.cbegin(); it != rooms.cend(); ++it) {
         if (isOverlapping(*it)) {
             return false;
@@ -60,19 +60,19 @@ const bool Room::isRoomValid(const std::vector<Room>& rooms) const {
     }
     return true;
 }
-const bool Room::isOverlapping(const Room& room) const {
+bool Room::isOverlapping(const Room& room) const {
     if (isOverlappingX(room) && isOverlappingY(room)) {
         return true;
     }
     return false;
 }
-const bool Room::isOverlappingX(const Room& room) const {
+bool Room::isOverlappingX(const Room& room) const {
     if (this->x0_ < room.x0_) {
         return !(this->x0_ + this->col_ < room.x0_);
     }
     return !(room.x0_ + room.col_ < this->x0_);
 }
-const bool Room::isOverlappingY(const Room& room) const {
+bool Room::isOverlappingY(const Room& room) const {
     if (this->y0_ < room.y0_) {
         return !(this->y0_ + this->row_ < room.y0_);
     }
