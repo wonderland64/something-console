@@ -4,6 +4,7 @@
 #include "LevelController.hh"
 #include "InputController.hh"
 #include "Player.hh"
+#include "UiController.hh"
 
 class GameController {
 public:
@@ -19,6 +20,7 @@ public:
 private:
     LevelController levelController_;
     InputController inputController_;
+    UiController uiController_;
 
     Player player_;
 

@@ -6,9 +6,10 @@
 
 LevelController::LevelController() : currentLevel_(0), levels_() {}
 
-void LevelController::generateLevel(Player& player, unsigned int roomAmount, unsigned int rowMax, unsigned int colMax) {
-    // TODO: this should probably not use ncurses
-    Level level(getmaxy(stdscr), getmaxx(stdscr));
+void LevelController::generateLevel(Player& player, unsigned int sizeY, unsigned int sizeX,
+                                    unsigned int roomAmount, unsigned int rowMax, unsigned int colMax) {
+
+    Level level(sizeY, sizeX);
     levels_.push_back(level);
     currentLevel_ = &levels_.back();
     currentLevel_->generateLevel(roomAmount, rowMax, colMax);

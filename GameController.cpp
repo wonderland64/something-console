@@ -1,5 +1,4 @@
 #include "GameController.hh"
-#include <ncurses.h>
 
 GameController::GameController() {}
 
@@ -8,7 +7,7 @@ void GameController::handleInput(int input) {
     advanceTurn();
 }
 void GameController::generateLevel(unsigned int roomAmount, unsigned int maxRow, unsigned int maxCol) {
-    levelController_.generateLevel(player_, roomAmount, maxRow, maxCol);
+    levelController_.generateLevel(player_, 50, 50, roomAmount, maxRow, maxCol);
     levelController_.drawLevel();
 }
 void GameController::movePlayer(int y, int x) {

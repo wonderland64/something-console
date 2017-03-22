@@ -11,14 +11,14 @@ public:
     LevelController(const LevelController&) = delete;
     LevelController& operator=(const LevelController&) = delete;
 
-    void generateLevel(Player&, unsigned int, unsigned int, unsigned int);
+    void generateLevel(Player&, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
     void drawLevel();
     static void redrawTile(unsigned int, unsigned int, char);
 
 private:
     Level* currentLevel_;
     std::vector<Level> levels_;
-    
+
     void spawnPlayer(Player&);
 };
 
