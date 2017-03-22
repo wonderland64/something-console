@@ -10,7 +10,7 @@ void Actor::move(int y, int x) {
     // }
     //tile_ = currentLevel_->moveActor(*this, tile_, y, x);
     auto callback = [this, y, x]() { return currentLevel_->moveActor(*this, tile_, y, x); };
-    action_ = std::make_unique<Action<int, decltype(callback), Tile*>>(0, callback, &tile_);
+    action_ = std::make_unique<Action<int, decltype(callback), Tile*>>(1, callback, &tile_);
 }
 char Actor::graphic() const {
     return graphic_;

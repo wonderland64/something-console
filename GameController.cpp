@@ -1,4 +1,5 @@
 #include "GameController.hh"
+#include <ncurses.h>
 
 GameController::GameController() {}
 

@@ -22,14 +22,9 @@ public:
         : ticks_(ticks), objectToModify_(objectToModify), callback_(callback), invoked_(false) {}
 
     bool tickDown() override {
-        // if (invoked_) {
-        //     //throw std::domain_error("already invoked, shouldn't have been called");
-        //     return false;
-        // }
         if (ticks_ == 0 && !invoked_) {
             *objectToModify_ = callback_();
             invoked_ = true;
-            return true;
         }
         --ticks_;
         return !invoked_;
