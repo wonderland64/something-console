@@ -5,9 +5,9 @@ Actor::Actor(Level* level, Tile* tile, char graphic)
     : currentLevel_(level), tile_(tile), graphic_(graphic), action_(nullptr) {}
 
 void Actor::move(int y, int x) {
-    if (y == 0 && x == 0) {
-        return;
-    }
+    // if (y == 0 && x == 0) {
+    //     return;
+    // }
     //tile_ = currentLevel_->moveActor(*this, tile_, y, x);
     auto callback = [this, y, x]() { return currentLevel_->moveActor(*this, tile_, y, x); };
     action_ = std::make_unique<Action<int, decltype(callback), Tile*>>(0, callback, &tile_);
