@@ -1,39 +1,24 @@
 #ifndef GUARD_UiController_hh
 #define GUARD_UiController_hh
 
+#include "Window.hh"
 #include <ncurses.h>
-#include <panel.h>
-#include <string>
 
+// rename windowManager?
 class UiController {
 public:
-    UiController() { init(); }
+    UiController();
+
+
+    // It should take something that denotes what to build.
+    // Might not work if they need pointers to windows from here.
+    // Maybe friendship.
+    static windowManipulator buildManipulator(...);
+    // static printer buildPrinter();
+    // static writer buildWriter();
 
 private:
-    WINDOW* level;
-    WINDOW* log;
-    PANEL* levelPanel;
-    PANEL* logPanel;
-
-    void init() {
-        level = newwin(getmaxy(stdscr)-20, getmaxx(stdscr)-1, 0, 0);
-        log = newwin(20, getmaxx(stdscr)-1, getmaxy(stdscr)-20, 0);
-        levelPanel = new_panel(level);
-        logPanel = new_panel(log);
-
-
-
-        for (int i = 0; i != getmaxy(log)+1; ++i) {
-            const char* c = std::to_string(i+1).c_str();
-            mvwprintw(log, i, i, c);
-        }
-        //hide_panel(logPanel);
-        mvwprintw(level, getmaxy(level)-1, 1, "end of level");
-        update_panels();
-        doupdate();
-
-    }
-
+    Window log_;
 };
 
 #endif
