@@ -9,7 +9,7 @@ set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
 include_directories( ${CURSES_INCLUDE_DIRS} )
 
-set(SOURCES main.cpp Actor.cpp GameController.cpp InputController.cpp InputMode.cpp LevelController.cpp Level.cpp Player.cpp Room.cpp Tile.cpp)
+set(SOURCES main.cpp Actor.cpp GameController.cpp InputController.cpp InputMode.cpp LevelController.cpp Level.cpp Player.cpp Room.cpp Tile.cpp )
 
 set(NCURSES_EXTRAS panel)
 add_executable(main ${SOURCES})
