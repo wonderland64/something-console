@@ -1,37 +1,37 @@
 #ifndef GUARD_Level_hh
 #define GUARD_Level_hh
 
-#include <vector>
 #include "Room.hh"
 #include "Tile.hh"
+#include <vector>
 
 class Level {
 public:
-    Level(int, int);
+    Level(int sizeY, int sizeX);
+
+    //static Level Build(int sizeY, int sizeX, int roomAmount = 20);
+    void generateLevel(int maxRoomHeight, int maxRoomWidth, int roomAmount);
 
     std::size_t width() const;
     std::size_t height() const;
-    //const std::vector<Room>& getRooms() const;
 
-    Tile* moveActor(const Actor&, Tile*, int, int);
-    Tile* randomTile();
-    void spawnActor(Actor&);
+    Tile* tileAt(int y, int x);
 
-    void generateLevel(unsigned int, unsigned int, unsigned int);
-    // Temp
-    void printLevelArray();
+    const Room& randomRoom() const;
+
+    //Tile* moveActor(const Actor&, Tile*, int, int);
+    //Tile* randomTile();
+    //void spawnActor(Actor&);
+    //void printLevelArray();
 
 private:
     std::vector<std::vector<Tile>> tiles_;
     std::vector<Room> rooms_;
 
-    //void addToLevelArray(const Room&);
     void addCorridor(const Room&, const Room&);
-    void fixCorners(unsigned int, unsigned int);
+    void fixCorners(int, int);
 
-    void setTileType(unsigned int, unsigned int, TileType);
-
-    void redrawTile(const Tile&) const;
+    //void setTileType(int, int, TileType);
 };
 
 #endif

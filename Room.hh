@@ -1,42 +1,43 @@
 #ifndef GUARD_Room_hh
 #define GUARD_Room_hh
 
-//#include "Tile.hh"
 #include <vector>
 #include <functional>
 
 class Level;
-//class Tile;
+class Tile;
+
 enum TileType : char;
 
 class Room {
 private:
-    using setTileFunction = std::function<void(unsigned int, unsigned int, TileType)>;
+    using tileAtFunc = std::function<Tile*(int y, int x)>;
+    using roomVec = std::vector<Room>;
 
 public:
     Room();
-    Room(unsigned int, unsigned int, unsigned int, unsigned int);
+    Room(int y, int x, int height, int width);
 
-    unsigned int centerX() const noexcept;
-    unsigned int centerY() const noexcept;
+    int centerX() const;
+    int centerY() const;
 
-    bool generateRoom(const std::vector<Room>&, unsigned int, unsigned int, unsigned int, unsigned int);
+    bool generateRoom(const roomVec& rooms, int, int, int, int);
 
-    void addToLevel(setTileFunction);
+    void addToLevel(tileAtFunc tileAt) const;
 
 private:
-    unsigned int y0_;
-    unsigned int x0_;
-    unsigned int row_;
-    unsigned int col_;
+    int y_;
+    int x_;
+    int height_;
+    int width_;
 
-    static const unsigned int minRoomSize_ = 5;
+    static const int minRoomSize_;
 
-    bool isRoomValid(const std::vector<Room>&) const;
+    bool isRoomValid(const roomVec& rooms) const;
     // Helper functions to isRoomValid.
-    bool isOverlapping(const Room&) const;
-    bool isOverlappingX(const Room&) const;
-    bool isOverlappingY(const Room&) const;
+    bool isOverlapping(const Room& room) const;
+    bool isOverlappingX(const Room& room) const;
+    bool isOverlappingY(const Room& room) const;
 };
 
 #endif

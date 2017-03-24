@@ -10,6 +10,9 @@ public:
     InputController();
     void getInput(GameController&, int);
 
+    // Interact with window manager.
+    // Possibly interact with the player or player interface.
+
 private:
     std::unique_ptr<InputMode> mode_;
 

@@ -1,26 +1,28 @@
 #ifndef GUARD_Actor_hh
 #define GUARD_Actor_hh
 
-#include "Action.hh"
+#include <memory>
 
 class Level;
 class Tile;
+class IAction;
 
 class Actor {
 public:
-    Actor(Level*, Tile*, char);
+    Actor(char);
     virtual ~Actor() = default;
 
-    void move(int, int);
     char graphic() const;
-    void moveLevel(Level*, Tile*);
 
-    bool progressAction();
+    void move(int yDirection, int xDirection);
+
+    bool validAction() const;
+    bool progressAction() const;
+
+    void place(Tile* tile);
 
 private:
-    Level* currentLevel_;
     Tile* tile_;
-
     char graphic_;
 
     std::unique_ptr<IAction> action_;

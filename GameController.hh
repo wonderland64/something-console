@@ -8,14 +8,14 @@
 
 class GameController {
 public:
-    GameController();
+    GameController(int, int);
     //~GameController();
     GameController(const GameController&) = delete;
     GameController& operator=(const GameController&) = delete;
 
-    void handleInput(int);
-    void generateLevel(unsigned int = 10, unsigned int = 20, unsigned int = 20);
-    void movePlayer(int, int);
+    //void handleInput(int);
+    //void generateLevel(unsigned int = 10, unsigned int = 20, unsigned int = 20);
+    //void movePlayer(int, int);
 
 private:
     LevelController levelController_;

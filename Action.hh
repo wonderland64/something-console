@@ -7,6 +7,7 @@ class IAction {
 public:
     virtual ~IAction() = default;
     virtual bool tickDown() = 0;
+    virtual bool validAction() = 0;
 };
 
 // If R is not specified R defaults to void, result: if R is not specified F have to return void,
@@ -26,6 +27,10 @@ public:
             invoked_ = true;
         }
         --ticks_;
+        return !invoked_;
+    }
+
+    bool validAction() override {
         return !invoked_;
     }
 
