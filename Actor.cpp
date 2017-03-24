@@ -20,6 +20,12 @@ void Actor::moveLevel(Level* level, Tile* tile) {
     tile_ = tile;
 }
 
+bool Actor::validAction() {
+    if (action_ == nullptr) {
+        return false;
+    }
+    return action_->validAction();
+}
 bool Actor::progressAction() {
     if (action_ == nullptr) {
         return false;

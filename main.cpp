@@ -15,7 +15,9 @@ int main() {
     //resizeterm(25, 50);
 
     int input;
-    GameController gc;
+    int y, x;
+    getmaxyx(stdscr, y, x);
+    GameController gc(y, x);
 
     while (true) {
         input = getch();

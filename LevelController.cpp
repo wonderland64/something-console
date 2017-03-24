@@ -1,16 +1,15 @@
-#include "LevelController.hh"
-#include "ncurses.h"
 #include "Player.hh"
+#include "LevelController.hh"
+#include <ncurses.h>
 
 //Tile::redrawTileFunction Tile::redrawTile = &LevelController::redrawTile;
 
-LevelController::LevelController() : currentLevel_(0), levels_() {}
+LevelController::LevelController() : levelDisplay_(20, getmaxx(stdscr), getmaxy(stdscr)-20, 0) {}
 
 void LevelController::generateLevel(Player& player, unsigned int sizeY, unsigned int sizeX,
                                     unsigned int roomAmount, unsigned int rowMax, unsigned int colMax) {
 
-    Level level(sizeY, sizeX);
-    levels_.push_back(level);
+    levels_.push_back(Level(sizeY, sizeX));
     currentLevel_ = &levels_.back();
     currentLevel_->generateLevel(roomAmount, rowMax, colMax);
     spawnPlayer(player);
@@ -20,11 +19,8 @@ void LevelController::drawLevel() {
     currentLevel_->printLevelArray();
 }
 
-void LevelController::spawnPlayer(Player& player) {
+void LevelController::spawnPlayer(Actor& player) {
     //Tile* tile = currentLevel_->randomTile();
     currentLevel_->spawnActor(player);
 }
 
-void LevelController::redrawTile(unsigned int y, unsigned int x, char graphic) {
-    mvaddch(y, x, graphic);
-}

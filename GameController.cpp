@@ -1,6 +1,8 @@
 #include "GameController.hh"
+#include <ncurses.h>
 
-GameController::GameController() {}
+// TODO: change this. Maybe init()
+GameController::GameController(int maxY, int maxX) {}
 
 void GameController::handleInput(int input) {
     inputController_.getInput(*this, input);
@@ -15,9 +17,13 @@ void GameController::movePlayer(int y, int x) {
     //levelController_.drawLevel();
 }
 void GameController::advanceTurn() {
-    while (player_.progressAction()) {
-        // this should loop until the player action is finished
-        // or something breaks the action. Which shouldn't happen here.
-        // call other actors. probably other stuff.
+    if (player_.validAction()) {
+        while (player_.progressAction()) {
+            // this should loop until the player action is finished
+            // or something breaks the action. Which shouldn't happen here.
+            // call other actors. probably other stuff.
+        }
+        update_panels();
+        doupdate();
     }
 }
